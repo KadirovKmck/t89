@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:splash_view/source/presentation/pages/splash_view.dart';
 import 'package:splash_view/source/presentation/widgets/done.dart';
-import 'package:t89/src/app/onbording_view/onbording_view.dart';
+import 'package:t89/src/presentation/screen/onbording_view/onbording_view.dart';
 
 class SplashScreen extends StatelessWidget {
   const SplashScreen({super.key});
