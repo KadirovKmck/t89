@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:image_picker/image_picker.dart';
@@ -19,6 +20,7 @@ class _ProductAlertState extends State<ProductAlert> {
   final TextEditingController _productNameController = TextEditingController();
   final TextEditingController _productPriceController = TextEditingController();
   final TextEditingController _productStockController = TextEditingController();
+  final _formKey = GlobalKey<FormState>();
   File? _selectedImage;
 
   Future<void> _pickImage() async {
@@ -45,118 +47,86 @@ class _ProductAlertState extends State<ProductAlert> {
     return SingleChildScrollView(
       child: Padding(
         padding: EdgeInsets.all(1.sp),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            SizedBox(height: 1.h),
-            Text(
-              'Product Name',
-              textAlign: TextAlign.left,
-              style: TextStyle(
-                color: const Color(0xFFA3A3A3),
-                fontSize: 12.sp,
-                fontFamily: 'SF Pro Display',
-                fontWeight: FontWeight.w500,
-              ),
-            ),
-            SizedBox(height: 1.h),
-            TextField(
-              controller: _productNameController,
-              decoration: InputDecoration(
-                filled: true,
-                fillColor: Colors.white,
-                hintText: 'Product Name',
-                hintStyle: const TextStyle(color: Colors.black),
-                contentPadding:
-                    EdgeInsets.symmetric(vertical: 2.h, horizontal: 3.w),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(15),
-                  borderSide: BorderSide.none,
-                ),
-                enabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(15),
-                  borderSide: const BorderSide(color: Colors.grey, width: 1),
-                ),
-                focusedBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(15),
-                  borderSide: const BorderSide(color: Colors.grey, width: 1),
+        child: Form(
+          key: _formKey,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SizedBox(height: 1.h),
+              Text(
+                'Product Name',
+                textAlign: TextAlign.left,
+                style: TextStyle(
+                  color: const Color(0xFFA3A3A3),
+                  fontSize: 12.sp,
+                  fontFamily: 'SF Pro Display',
+                  fontWeight: FontWeight.w500,
                 ),
               ),
-            ),
-            SizedBox(height: 2.h),
-            Text(
-              'Product Price',
-              textAlign: TextAlign.left,
-              style: TextStyle(
-                color: const Color(0xFFA3A3A3),
-                fontSize: 12.sp,
-                fontWeight: FontWeight.w500,
+              SizedBox(height: 1.h),
+              CupertinoTextField(
+                controller: _productNameController,
+                placeholder: 'Product Name',
+                placeholderStyle: const TextStyle(color: Colors.black),
+                padding: EdgeInsets.symmetric(vertical: 2.h, horizontal: 3.w),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(15),
+                  border: Border.all(color: Colors.grey, width: 1),
+                ),
+                style: const TextStyle(color: Colors.black),
               ),
-            ),
-            SizedBox(height: 1.h),
-            TextField(
-              controller: _productPriceController,
-              style: const TextStyle(color: Color(0xFF73D372)),
-              keyboardType: TextInputType.number,
-              decoration: InputDecoration(
-                filled: true,
-                fillColor: Colors.white,
-                hintText: 'Product Price',
-                hintStyle: const TextStyle(color: Color(0xFF73D372)),
-                contentPadding:
-                    EdgeInsets.symmetric(vertical: 2.h, horizontal: 3.w),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(15),
-                  borderSide: BorderSide.none,
-                ),
-                enabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(15),
-                  borderSide: const BorderSide(color: Colors.grey, width: 1),
-                ),
-                focusedBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(15),
-                  borderSide: const BorderSide(color: Colors.grey, width: 1),
+              SizedBox(height: 2.h),
+              Text(
+                'Product Price',
+                textAlign: TextAlign.left,
+                style: TextStyle(
+                  color: const Color(0xFFA3A3A3),
+                  fontSize: 12.sp,
+                  fontWeight: FontWeight.w500,
                 ),
               ),
-            ),
-            SizedBox(height: 2.h),
-            Text(
-              'Product in stock',
-              textAlign: TextAlign.left,
-              style: TextStyle(
-                color: const Color(0xFFA3A3A3),
-                fontSize: 12.sp,
-                fontFamily: 'SF Pro Display',
-                fontWeight: FontWeight.w500,
+              SizedBox(height: 1.h),
+              CupertinoTextField(
+                controller: _productPriceController,
+                placeholder: 'Product Price',
+                placeholderStyle: const TextStyle(color: Color(0xFF73D372)),
+                padding: EdgeInsets.symmetric(vertical: 2.h, horizontal: 3.w),
+                keyboardType: TextInputType.number,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(15),
+                  border: Border.all(color: Colors.grey, width: 1),
+                ),
+                style: const TextStyle(color: Color(0xFF73D372)),
               ),
-            ),
-            SizedBox(height: 1.h),
-            TextField(
-              controller: _productStockController,
-              keyboardType: TextInputType.number,
-              decoration: InputDecoration(
-                filled: true,
-                fillColor: Colors.white,
-                hintText: 'Product in stock',
-                hintStyle: const TextStyle(color: Colors.black),
-                contentPadding:
-                    EdgeInsets.symmetric(vertical: 2.h, horizontal: 3.w),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(15),
-                  borderSide: BorderSide.none,
-                ),
-                enabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(15),
-                  borderSide: const BorderSide(color: Colors.grey, width: 1),
-                ),
-                focusedBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(15),
-                  borderSide: const BorderSide(color: Colors.grey, width: 1),
+              SizedBox(height: 2.h),
+              Text(
+                'Product in stock',
+                textAlign: TextAlign.left,
+                style: TextStyle(
+                  color: const Color(0xFFA3A3A3),
+                  fontSize: 12.sp,
+                  fontFamily: 'SF Pro Display',
+                  fontWeight: FontWeight.w500,
                 ),
               ),
-            ),
-            SizedBox(height: 2.h),
-            GestureDetector(
+              SizedBox(height: 1.h),
+              CupertinoTextField(
+                controller: _productStockController,
+                placeholder: 'Product in stock',
+                placeholderStyle: const TextStyle(color: Colors.black),
+                padding: EdgeInsets.symmetric(vertical: 2.h, horizontal: 3.w),
+                keyboardType: TextInputType.number,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(15),
+                  border: Border.all(color: Colors.grey, width: 1),
+                ),
+                style: const TextStyle(color: Colors.black),
+              ),
+              SizedBox(height: 2.h),
+              GestureDetector(
                 onTap: _pickImage,
                 child: Container(
                   height: 15.h,
@@ -175,36 +145,40 @@ class _ProductAlertState extends State<ProductAlert> {
                           fit: BoxFit.cover,
                         )
                       : SvgPicture.asset('assets/icons/addfoto.svg'),
-                )),
-            SizedBox(height: 2.h),
-            CustomButton(
-              colors: const Color(0xFF262A46),
-              width: double.infinity,
-              height: 4.4.h,
-              onPressed: () {
-                final newProduct = ProductModel(
-                  name: _productNameController.text,
-                  price: _productPriceController.text,
-                  stock: _productStockController.text,
-                  productPhoto: _selectedImage?.path ?? '',
-                );
-
-                Provider.of<ProductProvider>(context, listen: false)
-                    .addProduct(newProduct);
-
-                Navigator.pop(context);
-              },
-              text: Text(
-                'Save',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 15.sp,
-                  fontWeight: FontWeight.w500,
                 ),
               ),
-            ),
-          ],
+              SizedBox(height: 2.h),
+              CustomButton(
+                colors: const Color(0xFF262A46),
+                width: double.infinity,
+                height: 4.4.h,
+                onPressed: () {
+                  if (_formKey.currentState!.validate()) {
+                    final newProduct = ProductModel(
+                      name: _productNameController.text,
+                      price: _productPriceController.text,
+                      stock: _productStockController.text,
+                      productPhoto: _selectedImage?.path ?? '',
+                    );
+
+                    Provider.of<ProductProvider>(context, listen: false)
+                        .addProduct(newProduct);
+
+                    Navigator.pop(context);
+                  }
+                },
+                text: Text(
+                  'Save',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 15.sp,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

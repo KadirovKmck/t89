@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
@@ -30,28 +31,16 @@ class SaleAlertWidget extends StatelessWidget {
             ),
           ),
           SizedBox(height: 1.h),
-          TextField(
+          CupertinoTextField(
             keyboardType: TextInputType.number,
-            decoration: InputDecoration(
-              filled: true,
-              fillColor: Colors.white,
-              hintText: 'Amount:',
-              hintStyle: const TextStyle(color: Colors.black),
-              contentPadding:
-                  EdgeInsets.symmetric(vertical: 2.h, horizontal: 3.w),
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(15),
-                borderSide: BorderSide.none,
-              ),
-              enabledBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(15),
-                borderSide: const BorderSide(color: Colors.grey, width: 1),
-              ),
-              focusedBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(15),
-                borderSide: const BorderSide(color: Colors.grey, width: 1),
-              ),
+            placeholder: 'Amount:',
+            padding: EdgeInsets.symmetric(vertical: 2.h, horizontal: 3.w),
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(15),
+              border: Border.all(color: Colors.grey, width: 1),
             ),
+            style: const TextStyle(color: Colors.black),
           ),
           SizedBox(
             height: 2.h,
